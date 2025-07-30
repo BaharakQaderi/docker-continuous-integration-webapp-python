@@ -20,4 +20,10 @@ def index():
 
 @cache
 def redis():
-    return Redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
+    return Redis.from_url(
+        os.getenv("REDIS_URL", "redis://localhost:6379"),
+        socket_timeout=5,
+        socket_connect_timeout=5,
+        retry_on_timeout=True,
+        health_check_interval=30
+    )
