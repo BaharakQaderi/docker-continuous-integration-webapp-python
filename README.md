@@ -1,4 +1,11 @@
 
+
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/BaharakQaderi/docker-continuous-integration-webapp-python)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-blue?logo=docker)](https://github.com/BaharakQaderi/docker-continuous-integration-webapp-python)
+[![Flask](https://img.shields.io/badge/Flask-Backend-lightgrey?logo=flask)](https://github.com/BaharakQaderi/docker-continuous-integration-webapp-python)
+[![Redis](https://img.shields.io/badge/Redis-Database-red?logo=redis)](https://github.com/BaharakQaderi/docker-continuous-integration-webapp-python)
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI-blue?logo=githubactions)](https://github.com/BaharakQaderi/docker-continuous-integration-webapp-python/actions)
+
 # Build Robust Continuous Integration With Docker (Educational Resource)
 
 ## About This Resource
