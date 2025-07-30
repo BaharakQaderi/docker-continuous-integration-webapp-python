@@ -54,7 +54,7 @@ Browser (outside Docker)
 │                            │  /redis-data │ (persistent)    │
 │                            └──────────────┘                 │
 └─────────────────────────────────────────────────────────────┘
-
+```
 Flow:
 1. Browser sends GET request to Gunicorn (web-service)
 2. Gunicorn forwards request to Flask
