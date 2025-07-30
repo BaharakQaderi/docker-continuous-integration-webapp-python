@@ -3,20 +3,20 @@ FROM python:3.11.2-slim-bullseye AS builder
 RUN apt-get update && \
     apt-get upgrade --yes
 
-RUN useradd --create-home realpython
-USER realpython
-WORKDIR /home/realpython
+RUN useradd --create-home baharak
+USER baharak
+WORKDIR /home/baharak
 
-ENV VIRTUALENV=/home/realpython/venv
+ENV VIRTUALENV=/home/baharak/venv
 RUN python3 -m venv $VIRTUALENV
 ENV PATH="$VIRTUALENV/bin:$PATH"
 
-COPY --chown=realpython pyproject.toml constraints.txt ./
+COPY --chown=baharak pyproject.toml constraints.txt ./
 RUN python -m pip install --upgrade pip setuptools && \
     python -m pip install --no-cache-dir -c constraints.txt ".[dev]"
 
-COPY --chown=realpython src/ src/
-COPY --chown=realpython test/ test/
+COPY --chown=baharak src/ src/
+COPY --chown=baharak test/ test/
 
 RUN python -m pip install . -c constraints.txt && \
     python -m pytest test/unit/ && \
@@ -32,15 +32,15 @@ FROM python:3.11.2-slim-bullseye
 RUN apt-get update && \
     apt-get upgrade --yes
 
-RUN useradd --create-home realpython
-USER realpython
-WORKDIR /home/realpython
+RUN useradd --create-home baharak
+USER baharak
+WORKDIR /home/baharak
 
-ENV VIRTUALENV=/home/realpython/venv
+ENV VIRTUALENV=/home/baharak/venv
 RUN python3 -m venv $VIRTUALENV
 ENV PATH="$VIRTUALENV/bin:$PATH"
 
-COPY --from=builder /home/realpython/dist/page_tracker*.whl /home/realpython
+COPY --from=builder /home/baharak/dist/page_tracker*.whl /home/baharak
 
 RUN python -m pip install --upgrade pip setuptools && \
     python -m pip install --no-cache-dir page_tracker*.whl
