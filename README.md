@@ -93,3 +93,64 @@ You can run the end-to-end tests by enabling another service using a special pro
 $ docker compose --profile testing up -d
 $ docker compose logs test-service
 ```
+
+## Development & Debugging
+
+### Local Development Setup
+
+This project supports both traditional `venv` and modern `uv` package managers:
+
+- **Docker containers** use Python's built-in `venv`
+- **Local development** can use `uv` for faster dependency management
+
+To set up local development:
+
+```shell
+# Using uv (recommended for speed)
+$ uv venv
+$ source .venv/bin/activate
+$ uv pip install -e ".[dev]"
+
+# Or using traditional venv
+$ python -m venv .venv
+$ source .venv/bin/activate
+$ pip install -e ".[dev]"
+```
+
+### Debugging Docker Build Failures
+
+When `docker compose --profile testing up -d` fails, use the provided debug scripts:
+
+```shell
+# Quick check - runs exact Docker command chain
+$ ./web/debug_docker_checks.sh
+
+# Detailed check - shows which specific step fails
+$ ./web/debug_checks.sh
+```
+
+The Docker build runs these quality checks:
+- **pytest** - Unit tests
+- **flake8** - Code style linting
+- **isort** - Import sorting
+- **black** - Code formatting
+- **pylint** - Code quality analysis
+- **bandit** - Security vulnerability scanning
+
+### Fixing Common Issues
+
+**Black formatting errors:**
+```shell
+$ source .venv/bin/activate
+$ python -m black src/
+```
+
+**Import sorting errors:**
+```shell
+$ python -m isort src/
+```
+
+**Code style issues:**
+```shell
+$ python -m flake8 src/
+```
